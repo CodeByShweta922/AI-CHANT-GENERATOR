@@ -98,6 +98,8 @@ class ChantHandler(BaseHTTPRequestHandler):
             self.wfile.write(body)
 
 
-server = HTTPServer(("localhost", 5000), ChantHandler)
-print("AI Chant Generator Python server running at http://localhost:5000")
+port = int(os.environ.get("PORT", 5000))
+server = HTTPServer(("0.0.0.0", port), ChantHandler)
+
+print(f"AI Chant Generator Python server running on port {port}")
 server.serve_forever()
