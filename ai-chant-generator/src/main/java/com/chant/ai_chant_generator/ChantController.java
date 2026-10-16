@@ -23,8 +23,11 @@ public class ChantController {
         String encodedTopic =
                 URLEncoder.encode(topic, StandardCharsets.UTF_8);
 
-        URI uri = URI.create(
-                "http://localhost:5000/?topic=" + encodedTopic);
+        String pythonUrl = System.getenv()
+        .getOrDefault("PYTHON_SERVICE_URL", "http://localhost:5000");
+
+URI uri = URI.create(
+        pythonUrl + "/?topic=" + encodedTopic);
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(uri)
